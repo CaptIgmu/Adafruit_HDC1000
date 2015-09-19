@@ -16,7 +16,7 @@ BSD license, all text above must be included in any redistribution
 Sensor datasheet: http://www.ti.com/lit/ds/symlink/hdc1008.pdf
 
 Modified for use as a valid Spark firmware library for Particle Photon
-based on GitHub spark/uber-library-example  guidelines
+based on https://github.com/spark/uber-library-example
 
 
 
