@@ -10,7 +10,7 @@
   Modified for Photon
  ****************************************************/
 
-#include "Adafruit_HDC1000.h"
+#include "Adafruit_HDC1000/Adafruit_HDC1000.h"
 
 // Connect Vin to 3-5VDC
 // Connect GND to ground
