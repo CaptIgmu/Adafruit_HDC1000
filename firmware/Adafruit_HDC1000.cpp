@@ -12,6 +12,8 @@
 
   Written by Limor Fried/Ladyada for Adafruit Industries.  
   BSD license, all text above must be included in any redistribution
+  
+  Modified for Photon  needs application.h for types  RMB
  ****************************************************/
 #include "application.h"
 #include "Adafruit_HDC1000/Adafruit_HDC1000.h"
@@ -58,7 +60,7 @@ float Adafruit_HDC1000::readTemperature(void) {
   
 
 float Adafruit_HDC1000::readHumidity(void) {
-  // original code had HDC1000_TEMP register  RMB
+  // original code used HDC1000_TEMP register, doesn't work with HDC1000_HUMID  RMB
   float hum = (read32(HDC1000_TEMP, 20) & 0xFFFF);
 
   hum /= 65536;
