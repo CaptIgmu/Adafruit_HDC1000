@@ -14,7 +14,7 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 #include "application.h"
-#include "Adafruit_HD1000/Adafruit_HDC1000.h"
+#include "Adafruit_HDC1000/Adafruit_HDC1000.h"
 
 
 Adafruit_HDC1000::Adafruit_HDC1000() {
