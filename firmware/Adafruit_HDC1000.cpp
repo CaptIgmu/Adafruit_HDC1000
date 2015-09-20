@@ -58,8 +58,8 @@ float Adafruit_HDC1000::readTemperature(void) {
   
 
 float Adafruit_HDC1000::readHumidity(void) {
-
-  float hum = (read32(HDC1000_TEMP, 20) & 0xFFFF);
+  // original code had HDC1000_TEMP register  RMB
+  float hum = (read32(HDC1000_HUMID, 20) & 0xFFFF);
 
   hum /= 65536;
   hum *= 100;
