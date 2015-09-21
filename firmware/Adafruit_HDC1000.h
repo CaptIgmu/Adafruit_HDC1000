@@ -47,6 +47,7 @@ class Adafruit_HDC1000 {
   float readTemperature(void);
   float readHumidity(void);
   void reset(void);
+  bool batteryLOW(void);   // added, useful for remote monitoring  RMB
 
   uint16_t read16(uint8_t a, uint8_t d=0);
   uint32_t read32(uint8_t a, uint8_t d=0);
