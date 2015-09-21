@@ -73,7 +73,7 @@ float Adafruit_HDC1000::readHumidity(void) {
 // Add ability to test battery voltage, useful in remote monitoring, TRUE if <2.8V  
 // Thanks to KFricke for micropython-hdc1008 on GitHub, usually called after Temp/Humid reading  RMB
 
-bool Adafruit_HDC1000::batteryLOW(void)  {
+boolean Adafruit_HDC1000::batteryLOW(void)  {
   
   uint16_t battV = (read16(HDC1000_CONFIG_BATT, 20));
   
