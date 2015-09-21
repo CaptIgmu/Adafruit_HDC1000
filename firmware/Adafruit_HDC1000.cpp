@@ -37,7 +37,7 @@ boolean Adafruit_HDC1000::begin(uint8_t addr) {
 
 
 void Adafruit_HDC1000::reset(void) {
-  // reset,combined temp/humidity measurement,  and select 14 bit temp & humidity resolution
+  // reset,combined temp/humidity measurement,and select 14 bit temp & humidity resolution
   uint16_t config = HDC1000_CONFIG_RST | HDC1000_CONFIG_MODE | HDC1000_CONFIG_TRES_14 | HDC1000_CONFIG_HRES_14;
 
   Wire.beginTransmission(_i2caddr);
@@ -79,7 +79,8 @@ bool Adafruit_HDC1000::batteryLOW(void)  {
   
   battV &= HDC1000_CONFIG_BATT;   // mask off other bits, bit 11 will be 1 if voltage < 2.8V
   
-  return  (bool battV);
+  if (battV > 0) return true;
+  return  false;
 }  
   
 
