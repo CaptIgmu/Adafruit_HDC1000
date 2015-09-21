@@ -77,9 +77,9 @@ bool Adafruit_HDC1000::batteryLOW(void)  {
   
   uint16_t battV = (read16(HDC1000_CONFIG_BATT, 20));
   
-  bool battV &= HDC1000_CONFIG_BATT;   // mask off other bits
+  battV &= HDC1000_CONFIG_BATT;   // mask off other bits, bit 11 will be 1 if voltage < 2.8V
   
-  return  battV;
+  return  (bool battV);
 }  
   
 
