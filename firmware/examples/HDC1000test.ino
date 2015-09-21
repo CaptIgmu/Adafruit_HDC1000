@@ -22,11 +22,15 @@ Adafruit_HDC1000 hdc = Adafruit_HDC1000();
 void setup() {
   Serial.begin(9600);
   Serial.println("HDC100x test");
+  
+  hdc.begin();
+  delay(15);    // let the chip initialize
 
-  if (!hdc.begin()) {
+// Not using   couldn't find sensor
+/*  if (!hdc.begin()) {
     Serial.println("Couldn't find sensor!");
     while (1);
-  }
+  }  */
 }
 
 
