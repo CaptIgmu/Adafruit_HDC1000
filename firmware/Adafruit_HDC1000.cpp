@@ -61,19 +61,51 @@ float Adafruit_HDC1000::readTemperature(void) {
   
 
 float Adafruit_HDC1000::readHumidity(void) {
-  // reads both temp and humidity, masks out temp in highest 16 bits
+  // reads both temp and humidity but masks out temp in highest 16 bits
   // originally used hum but humidity declared in private section of class
   float humidity = (read32(HDC1000_TEMP, 20) & 0xFFFF);
 
   humidity /= 65536;
   humidity *= 100;
 
-  return hum;
+  return humidity;
 }
 
-// Add ability to test battery voltage, useful in remote monitoring, TRUE if <2.8V  
-// Thanks to KFricke for micropython-hdc1008 on GitHub, usually called after Temp/Humid reading  RMB
+void Adafruit_HDC1000::ReadTempHumidity(void) {
+  // HDC1008 setup to measure both temperature and humidity in one conversion
+  // this is a different way to access data in ONE read
+  // this sets internal private variables that can be accessed by Get() functions
 
+  uint32_t rt,rh ;  // working variables
+  
+  rt = read32(HDC1000_TEMP, 20);    // get temp and humidity reading together
+  rh = rt;                          // save a copy for humidity processing
+  
+  float temp = (rt >> 16);        // convert to temp first
+  temp /= 65536;
+  temp *= 165;
+  temp -= 40;
+  
+  float humidity = (rh & 0xFFFF);   // now convert to humidity
+  humidity /= 65536;
+  humidity *= 100;
+}
+
+float Adafruit_HDC1000::GetTemperature(void) {
+  // getter function to access private temp variable
+  
+  return temp ;
+}
+
+float Adafruit_HDC1000::GetHumidity(void) {
+  // getter function to access private humidity variable
+  
+  return humidity ;
+}
+
+// Add ability to test battery voltage, useful in remote monitoring, TRUE if <2.8V 
+// usually called after Temp/Humid reading  RMB
+// Thanks to KFricke for micropython-hdc1008 example on GitHub 
 boolean Adafruit_HDC1000::batteryLOW(void)  {
   
   uint16_t battLOW = (read16(HDC1000_CONFIG_BATT, 20));
@@ -105,7 +137,7 @@ uint32_t Adafruit_HDC1000::read32(uint8_t a, uint8_t d) {
   Wire.beginTransmission(_i2caddr);
   Wire.write(a);
   Wire.endTransmission();
-  // delay was hardcoded as 50, should be d   (delay)
+  // delay was hardcoded as 50, should use d   RMB
   delay(d);
   Wire.requestFrom((uint8_t)_i2caddr, (uint8_t)4);
   uint32_t r = Wire.read();
