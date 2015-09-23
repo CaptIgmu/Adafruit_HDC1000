@@ -47,7 +47,10 @@ class Adafruit_HDC1000 {
   float readTemperature(void);
   float readHumidity(void);
   void reset(void);
-  boolean batteryLOW(void);              // added, useful for remote monitoring  RMB
+  void ReadTempHumidity(void);    // added one conversion/one read version, updates private variables   RMB
+  float GetTemperature(void);            // added getter function to access private temp
+  float GetHumidity(void);              // added getter function to access private humidity
+  boolean batteryLOW(void);            // added testing of battery voltage, useful for remote monitoring 
 
   uint16_t read16(uint8_t a, uint8_t d=0);
   uint32_t read32(uint8_t a, uint8_t d=0);
