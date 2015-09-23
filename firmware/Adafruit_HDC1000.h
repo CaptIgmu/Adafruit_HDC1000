@@ -53,8 +53,9 @@ class Adafruit_HDC1000 {
   uint32_t read32(uint8_t a, uint8_t d=0);
   
  private:
-  boolean readData(void);
+  boolean readData(void);   // not being used
   float humidity, temp;
+  uint16_t battV;
   uint8_t _i2caddr;
 };
 
