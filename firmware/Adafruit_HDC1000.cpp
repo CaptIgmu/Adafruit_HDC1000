@@ -61,11 +61,12 @@ float Adafruit_HDC1000::readTemperature(void) {
   
 
 float Adafruit_HDC1000::readHumidity(void) {
-  // original code used HDC1000_TEMP register, doesn't work with HDC1000_HUMID with 32bit read  RMB
-  float hum = (read32(HDC1000_TEMP, 20) & 0xFFFF);
+  // reads both temp and humidity, masks out temp in highest 16 bits
+  // originally used hum but humidity declared in private section of class
+  float humidity = (read32(HDC1000_TEMP, 20) & 0xFFFF);
 
-  hum /= 65536;
-  hum *= 100;
+  humidity /= 65536;
+  humidity *= 100;
 
   return hum;
 }
@@ -104,9 +105,11 @@ uint32_t Adafruit_HDC1000::read32(uint8_t a, uint8_t d) {
   Wire.beginTransmission(_i2caddr);
   Wire.write(a);
   Wire.endTransmission();
-  delay(50);
+  // delay was hardcoded as 50, should be d   (delay)
+  delay(d);
   Wire.requestFrom((uint8_t)_i2caddr, (uint8_t)4);
   uint32_t r = Wire.read();
+  // assembles temp into highest 16 bits, humidity into lowest 16 bits
   r <<= 8;
   r |= Wire.read();
   r <<= 8;
