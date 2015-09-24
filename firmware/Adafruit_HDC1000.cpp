@@ -81,11 +81,13 @@ void Adafruit_HDC1000::ReadTempHumidity(void) {
   rt = read32(HDC1000_TEMP, 20);    // get temp and humidity reading together
   rh = rt;                          // save a copy for humidity processing
   
+  // important to use ( ) around temp so private variable accessed and float cast done
   float (temp = (rt >> 16));        // convert to temp first
   temp /= 65536;
   temp *= 165;
   temp -= 40;
   
+  // important to use ( ) around humidity so private variable accessed and float cast done
   float (humidity = (rh & 0xFFFF));   // now convert to humidity
   humidity /= 65536;
   humidity *= 100;
