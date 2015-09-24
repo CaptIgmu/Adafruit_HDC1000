@@ -85,10 +85,13 @@ void Adafruit_HDC1000::ReadTempHumidity(void) {
   temp /= 65536;
   temp *= 165;
   temp -= 40;
+  Serial.print("temp=",temp);
+  
   
   float humidity = (rh & 0xFFFF);   // now convert to humidity
   humidity /= 65536;
   humidity *= 100;
+  Serial.println("\thumidity=",humidity);
 }
 
 float Adafruit_HDC1000::GetTemperature(void) {
