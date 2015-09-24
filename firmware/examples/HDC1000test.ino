@@ -7,7 +7,7 @@
   These sensors use I2C to communicate, 2 pins are required to  
   interface
 
-  Modified for Photon
+  Modified for Photon RMB
  ****************************************************/
 
 #include "Adafruit_HDC1000/Adafruit_HDC1000.h"
@@ -31,11 +31,20 @@ void setup() {
     Serial.println("Couldn't find sensor!");
     while (1);
   }  */
+  
 }
 
 
 void loop() {
   Serial.print("Temp: "); Serial.print(hdc.readTemperature());
   Serial.print("\t\tHum: "); Serial.println(hdc.readHumidity());
+  
+  // here is a different approach   RMB
+  hdc.ReadTempHumidity();     // one conversion, one read version 
+  Serial.print("BothTemp: "); Serial.print(hdc.GetTemperature());
+  Serial.print("\t\BothHum: "); Serial.print(hdc.GetHumidity());
+  Serial.print("\t\BatteryLOW: ");
+  if (hdc.batteryLOW()) Serial.println("TRUE");
+  else Serial.println("FALSE");
   delay(500);
 }
