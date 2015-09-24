@@ -42,8 +42,8 @@ void loop() {
   // here is a different approach   RMB
   hdc.ReadTempHumidity();     // one conversion, one read version 
   Serial.print("BothTemp: "); Serial.print(hdc.GetTemperature());
-  Serial.print("\t\BothHum: "); Serial.print(hdc.GetHumidity());
-  Serial.print("\t\BatteryLOW: ");
+  Serial.print("\tBothHum: "); Serial.print(hdc.GetHumidity());
+  Serial.print("\tBatteryLOW: ");
   if (hdc.batteryLOW()) Serial.println("TRUE");
   else Serial.println("FALSE");
   delay(500);
