@@ -20,6 +20,7 @@
 Adafruit_HDC1000 hdc = Adafruit_HDC1000();
 
 void setup() {
+  // prints to USB port on Photon   RMB
   Serial.begin(9600);
   Serial.println("HDC100x test");
   
