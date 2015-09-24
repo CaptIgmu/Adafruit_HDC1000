@@ -81,17 +81,14 @@ void Adafruit_HDC1000::ReadTempHumidity(void) {
   rt = read32(HDC1000_TEMP, 20);    // get temp and humidity reading together
   rh = rt;                          // save a copy for humidity processing
   
-  float temp = (rt >> 16);        // convert to temp first
+  float (temp = (rt >> 16));        // convert to temp first
   temp /= 65536;
   temp *= 165;
   temp -= 40;
-  Serial.print("temp=",temp);
   
-  
-  float humidity = (rh & 0xFFFF);   // now convert to humidity
+  float (humidity = (rh & 0xFFFF));   // now convert to humidity
   humidity /= 65536;
   humidity *= 100;
-  Serial.println("\thumidity=",humidity);
 }
 
 float Adafruit_HDC1000::GetTemperature(void) {
