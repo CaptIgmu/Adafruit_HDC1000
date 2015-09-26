@@ -110,7 +110,7 @@ float Adafruit_HDC1000::GetHumidity(void) {
 // Thanks to KFricke for micropython-hdc1008 example on GitHub 
 boolean Adafruit_HDC1000::batteryLOW(void)  {
   // access private variable
-  battLOW = (read16(HDC1000_CONFIG_BATT, 20));
+  battLOW = (read16(HDC1000_CONFIG, 20));
   
   battLOW &= HDC1000_CONFIG_BATT;   // mask off other bits, bit 11 will be 1 if voltage < 2.8V
   
