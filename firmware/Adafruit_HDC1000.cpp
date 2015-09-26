@@ -50,8 +50,9 @@ void Adafruit_HDC1000::reset(void) {
 
 
 float Adafruit_HDC1000::readTemperature(void) {
-  
+  // does not set private variable
   float temp = (read32(HDC1000_TEMP, 20) >> 16);
+  
   temp /= 65536;
   temp *= 165;
   temp -= 40;
@@ -62,17 +63,17 @@ float Adafruit_HDC1000::readTemperature(void) {
 
 float Adafruit_HDC1000::readHumidity(void) {
   // reads both temp and humidity but masks out temp in highest 16 bits
-  // originally used hum but humidity declared in private section of class
-  float humidity = (read32(HDC1000_TEMP, 20) & 0xFFFF);
+  // does not set private variable
+  float hum = (read32(HDC1000_TEMP, 20) & 0xFFFF);
 
-  humidity /= 65536;
-  humidity *= 100;
+  hum /= 65536;
+  hum *= 100;
 
-  return humidity;
+  return hum;
 }
 
 void Adafruit_HDC1000::ReadTempHumidity(void) {
-  // HDC1008 setup to measure both temperature and humidity in one conversion
+  // HDC1008 setup to measure both temperature and humidity in one sequential conversion
   // this is a different way to access data in ONE read
   // this sets internal private variables that can be accessed by Get() functions
 
@@ -81,13 +82,13 @@ void Adafruit_HDC1000::ReadTempHumidity(void) {
   rt = read32(HDC1000_TEMP, 20);    // get temp and humidity reading together
   rh = rt;                          // save a copy for humidity processing
   
-  // important to use ( ) around temp so private variable accessed and float cast done
+  // important to use ( ) around temp so private variable set and float cast done
   float (temp = (rt >> 16));        // convert to temp first
   temp /= 65536;
   temp *= 165;
   temp -= 40;
   
-  // important to use ( ) around humidity so private variable accessed and float cast done
+  // important to use ( ) around humidity so private variable set and float cast done
   float (humidity = (rh & 0xFFFF));   // now convert to humidity
   humidity /= 65536;
   humidity *= 100;
@@ -109,7 +110,7 @@ float Adafruit_HDC1000::GetHumidity(void) {
 // usually called after Temp/Humid reading  RMB
 // Thanks to KFricke for micropython-hdc1008 example on GitHub 
 boolean Adafruit_HDC1000::batteryLOW(void)  {
-  // access private variable, don't need delay to read Config register
+  // set private variable, don't need delay to read Config register
   battLOW = (read16(HDC1000_CONFIG, 0));
   
   battLOW &= HDC1000_CONFIG_BATT;   // mask off other bits, bit 11 will be 1 if voltage < 2.8V
