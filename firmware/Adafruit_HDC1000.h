@@ -14,9 +14,15 @@
   BSD license, all text above must be included in any redistribution
 
   Sensor datasheet: http://www.ti.com/lit/ds/symlink/hdc1008.pdf
-
+  
+  RMB  Modified for Photon/Electron  needs application.h for types  
+  This was always needed in local builds but seems to be a newer
+  problem with Particle Build IDE
+  These libraries were migrated from Arduino where you could use
+  boolean instead of bool, uint32_t instead of unsigned int, etc.
  ****************************************************/
 
+#include "application.h"
 
 #define HDC1000_I2CADDR       0x40
 #define HDC1000_TEMP          0x00
@@ -37,7 +43,6 @@
 #define HDC1000_SERIAL3       0xFD
 #define HDC1000_MANUFID       0xFE
 #define HDC1000_DEVICEID      0xFF
-
 
 
 class Adafruit_HDC1000 {
