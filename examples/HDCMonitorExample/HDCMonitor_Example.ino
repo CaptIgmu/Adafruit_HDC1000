@@ -18,10 +18,7 @@
 // Connect SCL to I2C clock pin (D1 on Photon/Electron)
 // Connect SDA to I2C data pin  (D0 on Photon/Electron)
 
-#include "Adafruit_HDC1000/Adafruit_HDC1000.h"   // Use for Build IDE
-
-// Also need #include "application.h" in Adafruit_HDC1000.h for local build
-// #include "Adafruit_HDC1000.h"                     // Use for local build
+#include "Adafruit_HDC1000.h"                     
 
 #define ZZZ 900        // seconds of SLEEP  900 = 15 minutes
 #define PUBTIME 6000  // millisecs of publish waiting

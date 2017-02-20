@@ -13,12 +13,11 @@
   Written by Limor Fried/Ladyada for Adafruit Industries.  
   BSD license, all text above must be included in any redistribution
   
-  RMB   Modified for Photon/Electron  needs application.h for types
-   (if not included in Adafruit_HDC1000.h)
+  RMB   Modified for Particle Photon/Electron  
+   
  ****************************************************/
-#include "application.h"
-#include "Adafruit_HDC1000/Adafruit_HDC1000.h"  // Use with Particle Build IDE
-// #include "Adafruit_HDC1000.h"               // Use with local build
+
+#include "Adafruit_HDC1000.h"        // correct include for libs v2       
 
 Adafruit_HDC1000::Adafruit_HDC1000() {
 }

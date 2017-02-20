@@ -15,9 +15,7 @@
 
   Sensor datasheet: http://www.ti.com/lit/ds/symlink/hdc1008.pdf
   
-  RMB  Modified for Photon/Electron  needs application.h for types  
-  This was always needed in local builds but seems to be a newer
-  problem with Particle Build IDE
+  RMB  Modified for Particle Photon/Electron  needs application.h for types  
   These libraries were migrated from Arduino where you could use
   boolean instead of bool, uint32_t instead of unsigned int, etc.
  ****************************************************/

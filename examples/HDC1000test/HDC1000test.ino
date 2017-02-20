@@ -7,15 +7,15 @@
   These sensors use I2C to communicate, 2 pins are required to  
   interface
 
-  Modified for Photon RMB
+  Modified for Particle Photon/Electron  RMB
  ****************************************************/
 
-#include "Adafruit_HDC1000/Adafruit_HDC1000.h"
+#include "Adafruit_HDC1000.h"
 
 // Connect Vin to 3-5VDC
 // Connect GND to ground
-// Connect SCL to I2C clock pin (D1 on Photon)
-// Connect SDA to I2C data pin  (D0 on Photon)
+// Connect SCL to I2C clock pin (D1 on Photon/Electron)
+// Connect SDA to I2C data pin  (D0 on Photon/Electron)
 
 Adafruit_HDC1000 hdc = Adafruit_HDC1000();
 
